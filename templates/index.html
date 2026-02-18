@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuizMaster</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- ░░░  SETUP SCREEN  ░░░ -->
+  <div id="setup-screen">
+    <div class="logo">🎯</div>
+    <h1>QuizMaster</h1>
+    <p class="subtitle">Pick your settings and test your brain!</p>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category">
+        <option value="9">🌍 General Knowledge</option>
+        <option value="21">⚽ Sports</option>
+        <option value="23">🏛️ History</option>
+        <option value="27">🐾 Animals</option>
+        <option value="17">🔬 Science &amp; Nature</option>
+        <option value="11">🎬 Film</option>
+        <option value="12">🎵 Music</option>
+        <option value="18">💻 Computers</option>
+        <option value="22">🗺️ Geography</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="difficulty">Difficulty</label>
+      <select id="difficulty">
+        <option value="easy">🟢 Easy</option>
+        <option value="medium" selected>🟡 Medium</option>
+        <option value="hard">🔴 Hard</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="num-questions">Number of Questions</label>
+      <select id="num-questions">
+        <option value="5">5 Questions</option>
+        <option value="10" selected>10 Questions</option>
+        <option value="15">15 Questions</option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary" id="start-btn">Start Quiz 🚀</button>
+    <p id="setup-error" class="error-msg hidden"></p>
+  </div>
+
+  <!-- ░░░  LOADING SCREEN  ░░░ -->
+  <div id="loading-screen" class="hidden">
+    <div class="logo">🎯</div>
+    <h1>QuizMaster</h1>
+    <div class="spinner-wrap">
+      <div class="spinner"></div>
+      <p>Loading questions…</p>
+    </div>
+  </div>
+
+  <!-- ░░░  QUIZ SCREEN  ░░░ -->
+  <div id="quiz-screen" class="hidden">
+
+    <div class="top-bar">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-label" id="progress-label">Question 1 of 10</div>
+    </div>
+
+    <div class="q-meta">
+      <span class="q-category" id="q-category"></span>
+      <span class="q-difficulty" id="q-difficulty"></span>
+    </div>
+
+    <p class="question-text" id="q-text"></p>
+
+    <div class="options-grid" id="options-grid"></div>
+
+    <div class="feedback-box hidden" id="feedback-box"></div>
+
+    <button class="btn btn-secondary hidden" id="next-btn">Next →</button>
+  </div>
+
+  <!-- ░░░  RESULTS SCREEN  ░░░ -->
+  <div id="results-screen" class="hidden">
+    <div class="logo">🏆</div>
+    <h1>Results</h1>
+
+    <div class="score-circle">
+      <span class="big-num" id="score-fraction"></span>
+      <span class="score-label">CORRECT</span>
+    </div>
+
+    <p class="result-message" id="result-message"></p>
+    <p class="grade-tag" id="grade-tag"></p>
+
+    <!-- Review section -->
+    <button class="btn btn-outline" id="review-toggle-btn">📋 View My Answers</button>
+    <div id="review-list" class="hidden"></div>
+
+    <button class="btn btn-primary" id="play-again-btn">Play Again 🔄</button>
+  </div>
+
+</div><!-- /.card -->
+
+<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+</body>
+</html>
