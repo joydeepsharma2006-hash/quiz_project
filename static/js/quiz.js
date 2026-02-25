@@ -1,11 +1,4 @@
-// ============================================================
-//  quiz.js  –  Quiz App Frontend Logic
-//
-//  This file talks to the Python/Flask backend via fetch() calls.
-//  All answer checking happens on the server – not here.
-// ============================================================
-
-// ── State variables ──────────────────────────────────────────
+// ── State variables ─────────
 let questions    = [];   // array of question objects from the server
 let currentIndex = 0;   // which question we're on (0-based)
 let totalQuestions = 0;
@@ -41,9 +34,8 @@ document.getElementById("review-toggle-btn").addEventListener("click", () => {
 });
 
 
-// ════════════════════════════════════════════════════════════
+
 //  STEP 1 – FETCH QUESTIONS FROM PYTHON BACKEND
-// ════════════════════════════════════════════════════════════
 async function startQuiz() {
   const category   = document.getElementById("category").value;
   const difficulty = document.getElementById("difficulty").value;
@@ -82,9 +74,9 @@ async function startQuiz() {
 }
 
 
-// ════════════════════════════════════════════════════════════
+
 //  STEP 2 – RENDER CURRENT QUESTION
-// ════════════════════════════════════════════════════════════
+
 function renderQuestion() {
   answered = false;
 
@@ -128,9 +120,9 @@ function renderQuestion() {
 }
 
 
-// ════════════════════════════════════════════════════════════
+
 //  STEP 3 – SEND ANSWER TO PYTHON BACKEND & SHOW FEEDBACK
-// ════════════════════════════════════════════════════════════
+
 async function selectAnswer(chosen, clickedBtn) {
   if (answered) return; // ignore extra clicks
   answered = true;
@@ -181,9 +173,9 @@ async function selectAnswer(chosen, clickedBtn) {
 }
 
 
-// ════════════════════════════════════════════════════════════
+
 //  STEP 4 – MOVE TO NEXT QUESTION OR SHOW RESULTS
-// ════════════════════════════════════════════════════════════
+
 function nextQuestion() {
   currentIndex++;
   if (currentIndex >= totalQuestions) {
@@ -194,9 +186,9 @@ function nextQuestion() {
 }
 
 
-// ════════════════════════════════════════════════════════════
+
 //  STEP 5 – FETCH & DISPLAY FINAL RESULTS
-// ════════════════════════════════════════════════════════════
+
 async function loadResults() {
   try {
     const res  = await fetch("/get_results");

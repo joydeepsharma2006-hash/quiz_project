@@ -1,9 +1,3 @@
-# ============================================================
-#  app.py  –  Quiz App Backend (Flask)
-#  Run:  python app.py
-#  Then open:  http://127.0.0.1:5000
-# ============================================================
-
 from flask import Flask, render_template, request, jsonify, session
 import requests
 import html
@@ -40,7 +34,7 @@ def get_questions():
         f"&type=multiple"
     )
 
-    print(f"[INFO] Fetching from: {api_url}")  # shows in your terminal
+    print(f"[INFO] Fetching from: {api_url}")  
 
     try:
         response = requests.get(api_url, timeout=15)
@@ -131,7 +125,7 @@ def check_answer():
     return jsonify({"is_right": is_right, "correct": correct})
 
 
-# ── Get results ──────────────────────────────────────────────
+# ── Get results ─────────
 @app.route("/get_results")
 def get_results():
     return jsonify({
@@ -141,6 +135,6 @@ def get_results():
     })
 
 
-# ── Run ──────────────────────────────────────────────────────
+# ── Run ───────────
 if __name__ == "__main__":
     app.run(debug=True)
